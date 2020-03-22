@@ -1,0 +1,52 @@
+universial president
+**题目描述**
+地球历公元 6036 年，全宇宙准备竞选一个最贤能的人当总统，共有 n 个非凡拔尖的人竞选总统，现在票数已经统计完毕，请你算出谁能够当上总统。
+**输入格式**
+第一行为一个整数 n，代表竞选总统的人数。
+接下来有 n行，分别为第一个候选人到第 n个候选人的票数。
+**输出格式**
+共两行，第一行是一个整数 m，为当上总统的人的号数。
+第二行是当上总统的人的选票。
+
+然后是代码
+
+```cpp
+#include<iostream>
+#include<string>//第一次用string 库 之前都是用的c里面的字符串数组
+using namespace std;
+string str1,str2;//str1存放最大票数
+int len1,len2,i,j,n,m1,m2;//len1，len2，m1，m2分别存放票数位数和编号
+int main()
+{
+	cin>>n;//接收总人数
+	cin>>str1;//接收第一个，假设为最大值
+	len1=str1.length();//计算字符串长度即票数位数
+	n--;
+	m1=1;//初始化编号，下同
+	m2=1;
+	while(n>0)//剩下人数为0则退出循环
+	{
+		cin>>str2;//接收数据为过度量
+		len2=str2.length();//计算位数
+		n--;//人数减一
+		m2++;//过度量编号更新
+		if(len1<len2)//最大值位数小就更新最大值的各项参数
+		{	
+			str1=str2;
+			len1=len2;
+			m1=m2;
+		}
+		else if(len1==len2)//位数相等就从高位开始比较
+		{
+			if(str1<str2)//过度量大就更新最大值参数
+			{
+				str1=str2;
+				m1=m2;
+			}
+		}
+	}
+	cout<<m1<<endl<<str1<<endl;
+	return 0;
+}
+```
+
